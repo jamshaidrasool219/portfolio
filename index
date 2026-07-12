@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Muhammad Jamshaid Rasool | Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome (icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0b0d15;
+            --bg-secondary: #131722;
+            --bg-card: #1a1f2e;
+            --bg-card-hover: #232a3d;
+            --text-primary: #f0f4ff;
+            --text-secondary: #a8b5d9;
+            --text-muted: #6a7ba3;
+            --accent-1: #6c63ff;
+            --accent-2: #4f46e5;
+            --accent-glow: rgba(108, 99, 255, 0.25);
+            --border-color: #2a3349;
+            --radius: 16px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-1);
+            border-radius: 10px;
+        }
+
+        /* ===== UTILITY ===== */
+        .section-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-1);
+            background: rgba(108, 99, 255, 0.12);
+            padding: 4px 16px;
+            border-radius: 50px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(108, 99, 255, 0.15);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, var(--accent-1), #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-sub {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 540px;
+        }
+
+        .section-header {
+            margin-bottom: 48px;
+        }
+
+        /* ===== GLOW ORB ===== */
+        .glow-orb {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.06), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            top: -200px;
+            right: -200px;
+            animation: orbFloat 20s infinite alternate ease-in-out;
+        }
+
+        .glow-orb--bottom {
+            top: auto;
+            bottom: -300px;
+            right: auto;
+            left: -200px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.05), transparent 70%);
+            animation-delay: -8s;
+        }
+
+        @keyframes orbFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(60px, 40px) scale(1.2);
+            }
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 16px 0;
+            background: rgba(11, 13, 21, 0.72);
+            backdrop-filter: blur(18px) saturate(1.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            transition: var(--transition);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff, var(--accent-1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo span {
+            font-weight: 300;
+            -webkit-text-fill-color: var(--text-secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-1);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--accent-1);
+            color: #fff !important;
+            padding: 8px 22px;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+        .nav-cta:hover {
+            background: var(--accent-2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(108, 99, 255, 0.35);
+            color: #fff !important;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 2.5px;
+            background: var(--text-primary);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content {
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(108, 99, 255, 0.1);
+            border: 1px solid rgba(108, 99, 255, 0.15);
+            padding: 6px 18px 6px 8px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #34d399;
+            display: inline-block;
+            animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(0.85);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.6rem, 6vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent-1), #a78bfa, #6c63ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent-1);
+            color: #fff;
+            padding: 14px 34px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 30px rgba(108, 99, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-2);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(108, 99, 255, 0.45);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: var(--text-primary);
+            padding: 14px 34px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-1);
+            background: rgba(108, 99, 255, 0.06);
+            transform: translateY(-3px);
+        }
+
+        /* Hero Image */
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeUp 0.8s ease 0.15s forwards;
+            opacity: 0;
+        }
+
+        .profile-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            aspect-ratio: 1/1;
+        }
+
+        .profile-ring {
+            position: absolute;
+            inset: -12px;
+            border-radius: 50%;
+            border: 2px solid rgba(108, 99, 255, 0.15);
+            animation: spinRing 30s linear infinite;
+        }
+
+        .profile-ring::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px dashed rgba(108, 99, 255, 0.08);
+        }
+
+        @keyframes spinRing {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--bg-card);
+            border: 4px solid var(--bg-primary);
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(145deg, #1a1f2e, #232a3d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            color: var(--accent-1);
+            overflow: hidden;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .profile-img .placeholder-icon {
+            font-size: 7rem;
+            opacity: 0.4;
+            color: var(--accent-1);
+        }
+
+        .floating-badge {
+            position: absolute;
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--shadow);
+            z-index: 5;
+            animation: floatBadge 4s infinite alternate ease-in-out;
+        }
+
+        .floating-badge--1 {
+            bottom: 10%;
+            right: -10%;
+            animation-delay: 0s;
+        }
+
+        .floating-badge--2 {
+            top: 8%;
+            left: -12%;
+            animation-delay: -1.5s;
+        }
+
+        @keyframes floatBadge {
+            0% {
+                transform: translateY(0px);
+            }
+            100% {
+                transform: translateY(-16px);
+            }
+        }
+
+        .floating-badge i {
+            font-size: 1.4rem;
+            color: var(--accent-1);
+        }
+
+        .floating-badge .badge-text {
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .floating-badge .badge-sub {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== SECTION COMMON ===== */
+        section {
+            padding: 80px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== EXPERIENCE ===== */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .exp-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-1), #a78bfa);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .exp-card:hover {
+            border-color: rgba(108, 99, 255, 0.25);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .exp-card:hover::before {
+            opacity: 1;
+        }
+
+        .exp-card .exp-company {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-1);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .exp-card .exp-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 6px 0 4px;
+        }
+
+        .exp-card .exp-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .exp-card .exp-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .exp-card .exp-desc ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .exp-card .exp-desc ul li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 6px;
+        }
+
+        .exp-card .exp-desc ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-1);
+        }
+
+        /* ===== SKILLS ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            text-align: center;
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .skill-card:hover {
+            border-color: rgba(108, 99, 255, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            background: var(--bg-card-hover);
+        }
+
+        .skill-card .skill-icon {
+            font-size: 2.2rem;
+            color: var(--accent-1);
+            margin-bottom: 10px;
+        }
+
+        .skill-card .skill-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .skill-card .skill-level {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--bg-primary);
+            border-radius: 4px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+
+        .skill-bar .fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--accent-1), #a78bfa);
+            width: 0%;
+            transition: width 1.2s ease;
+        }
+
+        /* ===== EDUCATION ===== */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .edu-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 30px 28px;
+            transition: var(--transition);
+        }
+
+        .edu-card:hover {
+            border-color: rgba(108, 99, 255, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 44px rgba(0, 0, 0, 0.3);
+        }
+
+        .edu-card .edu-degree {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .edu-card .edu-school {
+            color: var(--accent-1);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .edu-card .edu-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 4px 0 10px;
+        }
+
+        .edu-card .edu-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ===== CONTACT / FOOTER ===== */
+        .contact-wrap {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            padding: 48px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .contact-wrap .contact-text h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .contact-wrap .contact-text p {
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .contact-socials {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .contact-socials a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .contact-socials a:hover {
+            background: var(--accent-1);
+            color: #fff;
+            border-color: var(--accent-1);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(108, 99, 255, 0.3);
+        }
+
+        /* Phone & Email inline links */
+        .contact-links-inline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 32px;
+            margin-top: 12px;
+        }
+
+        .contact-links-inline a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+        }
+
+        .contact-links-inline a:hover {
+            color: var(--accent-1);
+            border-bottom-color: var(--accent-1);
+        }
+
+        .contact-links-inline a i {
+            color: var(--accent-1);
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 48px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-bottom a {
+            color: var(--accent-1);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .profile-wrapper {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .floating-badge--1 {
+                right: 0%;
+                bottom: 5%;
+            }
+            .floating-badge--2 {
+                left: 0%;
+                top: 5%;
+            }
+
+            .experience-grid,
+            .edu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-wrap {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-links-inline {
+                justify-content: center;
+            }
+
+            .contact-socials {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                padding: 80px 32px 40px;
+                gap: 24px;
+                transition: var(--transition);
+                border-left: 1px solid var(--border-color);
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .hamburger {
+                display: flex;
+                z-index: 1001;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            .hero {
+                padding: 100px 0 60px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .contact-wrap {
+                padding: 32px 24px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact-links-inline {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .profile-wrapper {
+                max-width: 240px;
+            }
+
+            .floating-badge {
+                padding: 8px 14px;
+                font-size: 0.75rem;
+            }
+            .floating-badge i {
+                font-size: 1rem;
+            }
+
+            .contact-socials a {
+                width: 44px;
+                height: 44px;
+                font-size: 1rem;
+            }
+
+            .contact-wrap .contact-text h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- GLOW ORBS -->
+    <div class="glow-orb"></div>
+    <div class="glow-orb glow-orb--bottom"></div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="logo">Jamshaid<span>.</span></a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+            </ul>
+
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="about">
+        <div class="container">
+            <div class="hero-grid">
+
+                <!-- Hero Content -->
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="dot"></span>
+                        Open to opportunities
+                    </div>
+
+                    <h1>
+                        Hi, I'm <br />
+                        <span class="highlight">Muhammad Jamshaid Rasool</span>
+                    </h1>
+
+                    <p>
+                        AI student with hands-on experience in international chat support
+                        and local digital management. I bridge technology and people —
+                        solving problems with code, empathy, and precision.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> Get in Touch
+                        </a>
+                        <a href="#experience" class="btn-secondary">
+                            <i class="fas fa-chevron-down"></i> My Journey
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="hero-image">
+                    <div class="profile-wrapper">
+
+                        <!-- Floating badges -->
+                        <div class="floating-badge floating-badge--1">
+                            <i class="fas fa-code"></i>
+                            <div>
+                                <div class="badge-text">AI &amp; Web</div>
+                                <div class="badge-sub">Problem Solver</div>
+                            </div>
+                        </div>
+
+                        <div class="floating-badge floating-badge--2">
+                            <i class="fas fa-headset"></i>
+                            <div>
+                                <div class="badge-text">Support Expert</div>
+                                <div class="badge-sub">4.9★ satisfaction</div>
+                            </div>
+                        </div>
+
+                        <div class="profile-ring"></div>
+
+                        <!-- PROFILE PICTURE PLACEHOLDER -->
+                        <div class="profile-img" id="profileImg">
+                            <img
+                            src="https://ui-avatars.com/api/?name=Muhammad+Jamshaid+Rasool&size=400&background=6c63ff&color=fff&bold=true&font-size=0.5"
+                            alt="Muhammad Jamshaid Rasool"
+                            id="profilePic"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-tag">Career</span>
+                <h2 class="section-title">Work <span>Experience</span></h2>
+                <p class="section-sub">Where I've applied my skills to deliver real impact.</p>
+            </div>
+
+            <div class="experience-grid">
+
+                <div class="exp-card fade-up">
+                    <div class="exp-company">JBT United</div>
+                    <div class="exp-title">Customer Support Executive</div>
+                    <div class="exp-date"><i class="far fa-calendar-alt" style="margin-right:6px;"></i>2024 – 2025 · Lahore, Pakistan</div>
+                    <div class="exp-desc">
+                        <ul>
+                            <li>Managed real-time chat interactions with international clients, resolving product queries and technical complaints.</li>
+                            <li>Maintained exceptional satisfaction scores through prompt, clear, and professional solutions.</li>
+                            <li>Identified and escalated complex issues to specialized teams, ensuring streamlined workflow.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exp-card fade-up">
+                    <div class="exp-company">GharFix</div>
+                    <div class="exp-title">GMB Management Specialist</div>
+                    <div class="exp-date"><i class="far fa-calendar-alt" style="margin-right:6px;"></i>Jan 2026 – Mar 2026 · Lahore, Pakistan</div>
+                    <div class="exp-desc">
+                        <ul>
+                            <li>Optimized Google My Business profiles to improve local search rankings and visibility.</li>
+                            <li>Monitored business information accuracy, managed customer reviews, and analyzed local SEO metrics.</li>
+                            <li>Enhanced organic lead generation through data-driven profile optimization.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section id="skills" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-tag">Expertise</span>
+                <h2 class="section-title">Skills &amp; <span>Competencies</span></h2>
+                <p class="section-sub">Technologies and tools I work with every day.</p>
+            </div>
+
+            <div class="skills-grid">
+
+                <div class="skill-card fade-up">
+                    <div class="skill-icon"><i class="fab fa-python"></i></div>
+                    <div class="skill-name">Python</div>
+                    <div class="skill-level">Intermediate</div>
+                    <div class="skill-bar"><div class="fill" data-width="70"></div></div>
+                </div>
+
+                <div class="skill-card fade-up">
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <div class="skill-name">C++</div>
+                    <div class="skill-level">Variables · Loops · Arrays · OOP</div>
+                    <div class="skill-bar"><div class="fill" data-width="65"></div></div>
+                </div>
+
+                <div class="skill-card fade-up">
+                    <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                    <div class="skill-name">HTML &amp; CSS</div>
+                    <div class="skill-level">Responsive · Modern</div>
+                    <div class="skill-bar"><div class="fill" data-width="80"></div></div>
+                </div>
+
+                <div class="skill-card fade-up">
+                    <div class="skill-icon"><i class="fas fa-database"></i></div>
+                    <div class="skill-name">SQL</div>
+                    <div class="skill-level">Intermediate</div>
+                    <div class="skill-bar"><div class="fill" data-width="65"></div></div>
+                </div>
+
+                <div class="skill-card fade-up">
+                    <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="skill-name">GMB &amp; Local SEO</div>
+                    <div class="skill-level">Optimization · Analytics</div>
+                    <div class="skill-bar"><div class="fill" data-width="75"></div></div>
+                </div>
+
+                <div class="skill-card fade-up">
+                    <div class="skill-icon"><i class="fas fa-users"></i></div>
+                    <div class="skill-name">Customer Support</div>
+                    <div class="skill-level">International · Chat</div>
+                    <div class="skill-bar"><div class="fill" data-width="90"></div></div>
+                </div>
+
+                <div class="skill-card fade-up">
+                    <div class="skill-icon"><i class="fas fa-microsoft"></i></div>
+                    <div class="skill-name">Microsoft Office</div>
+                    <div class="skill-level">Word · Excel · PowerPoint</div>
+                    <div class="skill-bar"><div class="fill" data-width="85"></div></div>
+                </div>
+
+                <div class="skill-card fade-up">
+                    <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                    <div class="skill-name">AI Foundations</div>
+                    <div class="skill-level">Problem Solving · Logic</div>
+                    <div class="skill-bar"><div class="fill" data-width="60"></div></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EDUCATION ===== -->
+    <section id="education">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-tag">Learning</span>
+                <h2 class="section-title">Education <span>Journey</span></h2>
+                <p class="section-sub">Building a strong foundation in computer science and AI.</p>
+            </div>
+
+            <div class="edu-grid">
+
+                <div class="edu-card fade-up">
+                    <div class="edu-degree">Associate Degree Program (ADP) in Artificial Intelligence</div>
+                    <div class="edu-school">University of Engineering and Technology (UET)</div>
+                    <div class="edu-date"><i class="far fa-calendar-alt" style="margin-right:6px;"></i>2025 – Present · Lahore, Pakistan</div>
+                    <div class="edu-desc">
+                        Currently pursuing foundational semesters with a strong focus on technical problem solving
+                        and foundational computer science.
+                    </div>
+                </div>
+
+                <div class="edu-card fade-up">
+                    <div class="edu-degree">Intermediate in Computer Science (ICS)</div>
+                    <div class="edu-school">Board of Intermediate and Secondary Education</div>
+                    <div class="edu-date"><i class="far fa-calendar-alt" style="margin-right:6px;"></i>Graduated: 2025 · Lahore, Pakistan</div>
+                    <div class="edu-desc">
+                        Completed intermediate education with a focus on computer science, programming fundamentals,
+                        and analytical thinking.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT / FOOTER ===== -->
+    <section id="contact" style="background: var(--bg-secondary); padding-bottom: 40px;">
+        <div class="container">
+            <div class="contact-wrap fade-up">
+                <div class="contact-text">
+                    <h3>Let's connect <span style="color:var(--accent-1);">👋</span></h3>
+                    <p>Open to internships, collaborations, or just a chat.</p>
+
+                    <!-- ===== INLINE PHONE & EMAIL (clickable & responsive) ===== -->
+                    <div class="contact-links-inline">
+                        <a href="tel:+923001234567" aria-label="Call me">
+                            <i class="fas fa-phone-alt"></i> +92-300-1234567
+                        </a>
+                        <a href="mailto:jamshaidrasool219@gmail.com" aria-label="Email me">
+                            <i class="fas fa-envelope"></i> jamshaidrasool219@gmail.com
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-socials">
+                    <!-- Phone -->
+                    <a href="tel:+923001234567" aria-label="Call me">
+                        <i class="fas fa-phone-alt"></i>
+                    </a>
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/923001234567" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <!-- GitHub -->
+                    <a href="https://github.com/jamshaidrasool219" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/muhammad-jamshaid-rasool-asghar-ali-74749a409" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <!-- Email -->
+                    <a href="mailto:jamshaidrasool219@gmail.com" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                &copy; 2025 <a href="#">Muhammad Jamshaid Rasool</a> — Built with <i class="fas fa-heart" style="color:var(--accent-1);"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ---------- HAMBURGER ----------
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+
+        // Close nav on link click (mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // ---------- SCROLL ANIMATIONS (Intersection Observer) ----------
+        const fadeElements = document.querySelectorAll('.fade-up');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // ---------- SKILL BAR ANIMATION ----------
+        const skillBars = document.querySelectorAll('.skill-bar .fill');
+
+        const barObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width + '%';
+                }
+            });
+        }, {
+            threshold: 0.3
+        });
+
+        skillBars.forEach(bar => barObserver.observe(bar));
+
+        // ---------- NAVBAR SCROLL EFFECT ----------
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                navbar.style.background = 'rgba(11, 13, 21, 0.88)';
+                navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.5)';
+            } else {
+                navbar.style.background = 'rgba(11, 13, 21, 0.72)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // ---------- PROFILE IMAGE FALLBACK (if image fails) ----------
+        const profilePic = document.getElementById('profilePic');
+        profilePic.addEventListener('error', function() {
+            this.style.display = 'none';
+            const parent = this.parentElement;
+            const fallback = document.createElement('span');
+            fallback.className = 'placeholder-icon';
+            fallback.innerHTML = '<i class="fas fa-user-circle"></i>';
+            parent.appendChild(fallback);
+        });
+
+        console.log('🚀 Muhammad Jamshaid Rasool — Portfolio loaded.');
+    </script>
+
+</body>
+</html>
